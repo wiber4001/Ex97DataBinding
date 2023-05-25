@@ -11,9 +11,12 @@ class MainActivity : AppCompatActivity() {
     //<layout>은 객체임 뷰가 아님
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main) //기존 setContentView는 지우기
         val binding:ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         // DataBindingUtil을 이용하여 setContentView를 한다
 
+        // 레이아웃 xml에서 <data>요소 안에있는 <variable>의 타입으로 지정한 User클래스를 객체로 생성하여 값을지정
+        binding.user=User("hong",400)
     }
+
 }

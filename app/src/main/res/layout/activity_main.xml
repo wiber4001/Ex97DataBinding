@@ -4,7 +4,7 @@
     <data>
         <variable
             name="user"
-            type="" />
+            type="com.wny2023.ex97databinding.User" />
     </data>
 <!-- 2. 레이아웃 뷰-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,7 +20,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Hello"/>
-
+        android:text="@{user.name}"/>
+<!--Int형 값을 보여주는 텍스트 뷰-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@{String.valueOf(user.age)}"/>
+<!-- Boolean형 값을 보여주는 CheckBox  -->
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="좋아요"
+        android:checked="@{user.fav}"
+        android:onCheckedChanged="@{user::changeFav}"/>
+<!-- 클릭이벤트에 따라 이름 글씨를 변경   -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="change name"
+        android:onClick="@{user::changeName}"/>
+<!-- age값 1증가하는 버튼 -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:text="increase age"
+        android:onClick="@{user::increaseAge}"/>
+<!--좋아요 표시를 바꾸는 버튼-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="좋아요/싫어요"
+        android:onClick="@{(v)->user.toggleFav()}"/>
+<!-- EditText 의 글씨를 제어해 보기 -->
+<!-- 기본속성으로 지정이 불가한 data binding 대응-->
 </LinearLayout>
 </layout>
