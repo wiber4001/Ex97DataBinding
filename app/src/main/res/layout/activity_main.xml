@@ -55,6 +55,46 @@
         android:text="좋아요/싫어요"
         android:onClick="@{(v)->user.toggleFav()}"/>
 <!-- EditText 의 글씨를 제어해 보기 -->
-<!-- 기본속성으로 지정이 불가한 data binding 대응-->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter text"
+        android:inputType="text"
+        android:onTextChanged="@{user::onTextChange}"/>
+<!--  EditText의 글시가 변경될때 마다 그 글씨를 보여주는 텍스트뷰 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:padding="8dp"
+        android:text="@{user.message}"/>
+<!--  EditText의 글시를 버튼이 클릭되면 텍스트 뷰에 보여주기  -->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="입력하세요"
+        android:inputType="text"
+        android:onTextChanged="@{(s, start, end, count)->user.changeInputValue(s) }"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="작성완료"
+        android:backgroundTint="@color/teal_200"
+        android:onClick="@{ v ->user.clickDone()}"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:padding="8dp"
+        android:text="@{user.value}"/>
+<!-- Fragment에서 데이터 바인딩: 기본속성으로 지정이 불가한 data binding 대응-->
+    <!--  id 속성은 강제라서 쓰이지 않아도 기재해줘야함 -->
+    <fragment
+        android:id="@+id/my_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.wny2023.ex97databinding.MyFragment"
+        tools:layout="@layout/fragment_my"/>
+
 </LinearLayout>
 </layout>

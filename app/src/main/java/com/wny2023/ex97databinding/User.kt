@@ -43,4 +43,22 @@ class User {
         //체크상태값을 관리하는 observable변수도 같이 변경을 반드시 해줘야함 (자동변경 안됨 주의)
         fav.set(isChecked)
     }
+    //EditText의 글씨 변화값을 가지고 있을 관찰가능한 변수
+    val message:ObservableField<String> = ObservableField("message")
+    //EditText의 글씨 변화 이벤트에 반응하는 콜백메소드 - 파라미터 중요
+    fun onTextChange(s:CharSequence?,start:Int,end:Int,count:Int){
+        message.set(s.toString())
+    }
+    //EditText에 글씨를 입력하고 버튼을 클릭하여 텍스트뷰에 보여주기
+    private var inputValue:String="" //입력한 값을 저장할 일반변수
+    val value:ObservableField<String> =ObservableField(inputValue) //일반변수의 변화를 지켜보는 변수
+    //EditText의 글씨 변경 이벤트 콜백 메소드에 의해 호출될 일반 메소드
+    fun changeInputValue(s:CharSequence){
+        inputValue=s.toString()
+    }
+    //작성완료버튼 클릭 콜백메소드에 의해 호출될 일반 메소드
+    fun clickDone(){
+        value.set(inputValue) //클릭됐을때까지의 inputValue값
+    }
+
 }
